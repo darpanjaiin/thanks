@@ -1,0 +1,503 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #588157;
+    --accent-color: #a3b18a;
+    --text-color: #344e41;
+    --background-color: #dad7cd;
+    --card-background: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --border-radius: 24px;
+    --light-text: #333333;
+    --background-beige: #e0d1b6;
+    --card-bg: #e9efe9;
+    --card-border: #cebda2;
+    --polaroid-bg: #fff;
+    --polaroid-border: #f0f0f0;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --input-bg: rgba(255, 255, 255, 0.8);
+    --guest-color: #5d4631;
+    --host-color: #61543d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #fafafa;
+    color: #262626;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 470px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.glass-card {
+    background-color: var(--card-background);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    transform-style: preserve-3d;
+}
+
+.glass-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(5deg);
+    box-shadow: var(--card-shadow), 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.form-container {
+    margin-top: 1rem;
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.form-step.active {
+    display: block;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.tagline {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-color);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(90, 129, 87, 0.2);
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: #1877f2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.next-btn, .submit-btn {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Thank You Card Styles */
+.thank-you-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 3rem;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.thank-you-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(5deg);
+}
+
+.card-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.card-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.message-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.date-info {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.guest-name, .property-name, .host-name {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.brand-logo {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.download-btn, .share-btn {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.download-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.download-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.share-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.share-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.icon {
+    font-size: 1rem;
+}
+
+/* Decorative elements */
+.butterfly {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('https://www.freepnglogos.com/uploads/butterfly-png/butterfly-png-image-purepng-transparent-png-25.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.butterfly-top-right {
+    top: 20px;
+    right: 20px;
+    transform: rotate(15deg);
+    animation: flutter 6s infinite alternate;
+}
+
+.butterfly-bottom-left {
+    bottom: 30px;
+    left: 20px;
+    transform: rotate(-10deg) scale(0.8);
+    animation: flutter 7s 1s infinite alternate;
+}
+
+.leaf {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url('https://www.freepnglogos.com/uploads/leaves-png/leaves-tropical-leaf-png-transparent-tropical-leaf-14.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+.leaf-top-left {
+    top: -20px;
+    left: -20px;
+    transform: rotate(-30deg) scale(0.9);
+}
+
+.leaf-bottom-right {
+    bottom: -25px;
+    right: -25px;
+    transform: rotate(15deg);
+}
+
+@keyframes flutter {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    25% {
+        transform: rotate(5deg) translateY(-5px);
+    }
+    50% {
+        transform: rotate(0deg) translateY(0);
+    }
+    75% {
+        transform: rotate(-5deg) translateY(5px);
+    }
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
+/* Card page specific styles */
+.card-page {
+    padding: 0;
+    max-width: 500px;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+/* Action buttons (outside card) */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 150px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: var(--secondary-color);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.create-new-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    background: var(--accent-color);
+}
+
+.create-new-btn:hover {
+    background: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-page {
+        padding: 0;
+    }
+    
+    .card-content {
+        padding: 25px;
+    }
+    
+    .card-panel {
+        padding: 20px;
+    }
+    
+    .card-title {
+        font-size: 2rem;
+    }
+    
+    .message-text {
+        font-size: 0.95rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-btn, .share-buttons {
+        width: 100%;
+    }
+}
+
+.tagline {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Add or update styles for the thanks banner and profile image */
+.thanks-banner {
+    width: 100%;
+    max-width: 470px;
+    position: relative;
+    margin-bottom: 15px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.thanks-banner img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Improve profile pic styling to show sunset over trees */
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: url('https://images.unsplash.com/photo-1472120435266-53107fd0c44a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80');
+    background-size: cover;
+    background-position: center;
+    margin-right: 12px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8);
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+
+/* Enhance signature styling */
+.signature {
+    display: block;
+    margin-top: 16px;
+    text-align: right;
+    font-style: italic;
+    color: #262626;
+    font-weight: 500;
+}
+
+/* Improve message paragraph styling */
+.message-paragraph {
+    margin-bottom: 14px;
+    line-height: 1.7;
+}
+
+/* Add subtle animation to heart icon */
+.heart-icon {
+    color: #ed4956;
+    transform-origin: center;
+    animation: heartBeat 1.5s ease-in-out;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+} 
